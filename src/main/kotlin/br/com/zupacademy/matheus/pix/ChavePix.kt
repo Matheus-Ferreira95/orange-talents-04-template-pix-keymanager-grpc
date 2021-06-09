@@ -48,4 +48,16 @@ class ChavePix(
     override fun toString(): String {
         return "ChavePix(clienteId=$clienteId, tipo=$tipo, chave='$chave', tipoDeConta=$tipoDeConta, conta=$conta, id=$id, criadaEm=$criadaEm)"
     }
+
+    fun isAleatoria(): Boolean = tipo == TipoDeChave.ALEATORIA
+
+    fun pertenceAo(clienteId: UUID) = this.clienteId == clienteId
+
+    fun atualiza(key: String): Boolean {
+        if(isAleatoria()){
+            this.chave = key
+            return true
+        }
+        return false
+    }
 }

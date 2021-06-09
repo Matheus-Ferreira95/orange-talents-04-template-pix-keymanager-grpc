@@ -9,8 +9,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ExceptionHandlerInterceptor(@Inject private val resolver: ExceptionHandlerResolver) :
-    MethodInterceptor<BindableService, Any?> {
+class ExceptionHandlerInterceptor(@Inject private val resolver: ExceptionHandlerResolver) : MethodInterceptor<BindableService, Any?> {
 
     private val logger = LoggerFactory.getLogger(this::class.java)
 
@@ -18,13 +17,13 @@ class ExceptionHandlerInterceptor(@Inject private val resolver: ExceptionHandler
         try {
             return context.proceed()
         } catch (e: Exception) {
-            logger.error(
-                "Handling the exception '${e.javaClass.name}' while processing the call: ${context.targetMethod}",
-                e
-            )
 
-            val handler = resolver.resolve(e)
+            logger.error("Handling the exception '${e.javaClass.name}' while processing the call: ${context.targetMethod}", e)
+
+            @Suppress("UNCHECKED_CAST")
+            val handler = resolver.resolve(e) as ExceptionHandler<Exception>
             val status = handler.handle(e)
+
             GrpcEndpointArguments(context).response()
                 .onError(status.asRuntimeException())
 
@@ -32,9 +31,14 @@ class ExceptionHandlerInterceptor(@Inject private val resolver: ExceptionHandler
         }
     }
 
-    private class GrpcEndpointArguments(val context: MethodInvocationContext<BindableService, Any?>) {
+    /**
+     * Represents the endpoint method arguments
+     */
+    private class GrpcEndpointArguments(val context : MethodInvocationContext<BindableService, Any?>) {
+
         fun response(): StreamObserver<*> {
             return context.parameterValues[1] as StreamObserver<*>
         }
+
     }
 }

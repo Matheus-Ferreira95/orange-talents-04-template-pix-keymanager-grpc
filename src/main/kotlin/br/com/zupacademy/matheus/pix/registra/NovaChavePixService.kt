@@ -30,7 +30,7 @@ class NovaChavePixService(@Inject val repository: ChavePixRepository,
         }
 
         val response = itauClient.buscaContaPorTipo(novaChave.clienteId!!, novaChave.tipoDeConta!!.name)
-        val conta = response.body()?.toModel() ?: throw IllegalArgumentException("Cliente não encontrado no itau")
+        val conta = response.body()?.toModel() ?: throw IllegalArgumentException("Cliente não encontrado no Itau")
 
         val chave = novaChave.toModel(conta)
         repository.save(chave)
