@@ -7,14 +7,34 @@ option objc_class_prefix = "HLW";
 
 package br.com.zupacademy.matheus;
 
-service GrpcPixService {
-  rpc send (GrpcPixRequest) returns (GrpcPixReply) {}
+service KeymanagerRegistraGrpcService {
+
+  rpc registra(RegistraChavePixRequest) returns (RegistraChavePixResponse){}
+
 }
 
-message GrpcPixRequest {
-  string name = 1;
+enum TipoDeChave {
+  UNKNOWN_TIPO_CHAVE = 0;
+  CPF                = 1;
+  CELULAR            = 2;
+  EMAIL              = 3;
+  ALEATORIA          = 4;
 }
 
-message GrpcPixReply {
-  string message = 1;
+enum TipoDeConta {
+  UNKNOWN_TIPO_CONTA = 0;
+  CONTA_CORRENTE     = 1;
+  CONTA_POUPANCA     = 2;
+}
+
+message RegistraChavePixResponse {
+  string clienteId = 1;
+  string pixId     = 2;
+}
+
+message RegistraChavePixRequest {
+  string clientId         = 1;
+  TipoDeChave tipoDeChave = 2;
+  string chave            = 3;
+  TipoDeConta tipoDeConta = 4;
 }

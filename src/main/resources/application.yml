@@ -1,3 +1,34 @@
 micronaut:
   application:
     name: grpcPix
+
+grpc:
+  server:
+    port: ${SERVER_PORT:50051}
+    keep-alive-time: 1h
+    max-inbound-message-size: 1024
+
+datasources:
+  default:
+    url: jdbc:postgresql://localhost:5432/pix_grpc
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    #   schema-generate: CREATE_DROP         nao recomendavel em ambiente de producao
+    dialect: POSTGRES
+
+jpa:
+  default:
+    properties:
+      hibernate:
+        show_sql: true
+        hbm2ddl.auto: update
+        format_sql: true
+
+itau:
+  contas:
+    url: 'http://localhost:9091'
+
+bcb:
+  pix:
+    url: 'http://localhost:8082'

@@ -1,4 +1,5 @@
 import com.google.protobuf.gradle.*
+
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.4.32"
     id("org.jetbrains.kotlin.kapt") version "1.4.32"
@@ -6,6 +7,7 @@ plugins {
     id("io.micronaut.application") version "1.5.0"
     id("org.jetbrains.kotlin.plugin.allopen") version "1.4.32"
     id("com.google.protobuf") version "0.8.15"
+    id("org.jetbrains.kotlin.plugin.jpa") version "1.5.10"
 }
 
 version = "0.1"
@@ -32,12 +34,21 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     runtimeOnly("ch.qos.logback:logback-classic")
-    implementation("io.micronaut:micronaut-validation")
 
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
-    testImplementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut:micronaut-http-client")
 
+    implementation("io.micronaut.beanvalidation:micronaut-hibernate-validator")
+
+    // JPA
+    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
+    implementation("org.postgresql:postgresql:42.2.18")
+
+    implementation("io.micronaut.beanvalidation:micronaut-hibernate-validator:2.3.1")
+    implementation ("org.hibernate:hibernate-validator:6.1.6.Final")
+    implementation("javax.validation:validation-api")
 }
 
 
