@@ -1,4 +1,4 @@
-package br.com.zupacademy.matheus.chave
+package br.com.zupacademy.matheus.pix.remove
 
 import br.com.zupacademy.matheus.*
 import br.com.zupacademy.matheus.pix.ChavePix

@@ -1,4 +1,4 @@
-package br.com.zupacademy.matheus.chave
+package br.com.zupacademy.matheus.pix.registra
 
 import br.com.zupacademy.matheus.TipoDeChave
 import br.com.zupacademy.matheus.TipoDeConta

@@ -1,4 +1,4 @@
-package br.com.zupacademy.matheus.chave
+package br.com.zupacademy.matheus.pix
 
 import br.com.zupacademy.matheus.KeymanagerRegistraGrpcServiceGrpc
 import br.com.zupacademy.matheus.RegistraChavePixRequest
@@ -53,7 +53,7 @@ internal class RegistraChavePixEndpointTest(val repository: ChavePixRepository,
 
         val response = grpcCliente.registra(
             RegistraChavePixRequest.newBuilder()
-                .setClientId(CLIENTE_ID.toString())
+                .setClienteId(CLIENTE_ID.toString())
                 .setTipoDeChave(TipoDeChave.EMAIL)
                 .setChave("rponte@gmail.com")
                 .setTipoDeConta(TipoDeConta.CONTA_CORRENTE)
@@ -77,7 +77,7 @@ internal class RegistraChavePixEndpointTest(val repository: ChavePixRepository,
 
         val ex = assertThrows<StatusRuntimeException> {
             grpcCliente.registra(RegistraChavePixRequest.newBuilder()
-                .setClientId(CLIENTE_ID.toString())
+                .setClienteId(CLIENTE_ID.toString())
                 .setTipoDeChave(TipoDeChave.CPF)
                 .setChave("72670126049")
                 .setTipoDeConta(TipoDeConta.CONTA_CORRENTE)
@@ -99,7 +99,7 @@ internal class RegistraChavePixEndpointTest(val repository: ChavePixRepository,
         val ex = assertThrows<StatusRuntimeException> {
             grpcCliente.registra(
                 RegistraChavePixRequest.newBuilder()
-                    .setClientId(CLIENTE_ID.toString())
+                    .setClienteId(CLIENTE_ID.toString())
                     .setTipoDeChave(TipoDeChave.EMAIL)
                     .setChave("rponte@gmail.com")
                     .setTipoDeConta(TipoDeConta.CONTA_CORRENTE)

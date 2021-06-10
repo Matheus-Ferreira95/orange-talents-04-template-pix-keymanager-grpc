@@ -9,7 +9,7 @@ import br.com.zupacademy.matheus.pix.TipoChave
 
 fun RegistraChavePixRequest.toModel(): NovaChavePix {
     return NovaChavePix(
-        clienteId = clientId,
+        clienteId = clienteId,
         tipo = when (tipoDeChave) {
             UNKNOWN_TIPO_CHAVE -> null
             else -> TipoChave.valueOf(tipoDeChave.name)

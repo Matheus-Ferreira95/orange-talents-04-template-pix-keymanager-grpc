@@ -40,6 +40,7 @@ dependencies {
     implementation("io.micronaut:micronaut-http-client")
 
     implementation("io.micronaut.beanvalidation:micronaut-hibernate-validator")
+    implementation("io.micronaut.xml:micronaut-jackson-xml")
 
     // JPA
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
