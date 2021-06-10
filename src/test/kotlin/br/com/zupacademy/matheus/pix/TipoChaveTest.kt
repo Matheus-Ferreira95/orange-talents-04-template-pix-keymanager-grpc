@@ -1,4 +1,4 @@
-package br.com.zupacademy.matheus.pix.registra
+package br.com.zupacademy.matheus.pix
 
 import br.com.zupacademy.matheus.pix.TipoChave
 import org.junit.jupiter.api.Assertions.assertFalse

@@ -5,6 +5,8 @@ option java_package = "br.com.zupacademy.matheus";
 option java_outer_classname = "GrpcPix";
 option objc_class_prefix = "HLW";
 
+import "google/protobuf/timestamp.proto";
+
 package br.com.zupacademy.matheus;
 
 service KeymanagerRegistraGrpcService {
@@ -16,6 +18,12 @@ service KeymanagerRegistraGrpcService {
 service KeymanagerRemoveGrpcService {
 
   rpc remove(RemoveChavePixRequest) returns (RemoveChavePixResponse) {}
+
+}
+
+service KeymanagerCarregaGrpcService {
+
+  rpc carrega(CarregaChavePixRequest) returns (CarregaChavePixResponse) {}
 
 }
 
@@ -60,3 +68,40 @@ message RemoveChavePixResponse {
   string clienteId = 1;
   string pixId     = 2;
 }
+
+message CarregaChavePixRequest {
+  message FiltroPorPixId {
+    string clienteId = 1;
+    string pixId     = 2;
+  }
+
+  oneof filtro {
+    FiltroPorPixId pixId  = 1;
+    string chave          = 2;
+  }
+}
+
+message CarregaChavePixResponse {
+
+  message ChavePix {
+
+    message ContaInfo {
+      TipoDeConta tipo     = 1;
+      string instituicao   = 2; /** ITAU UNIBANCO */
+      string nomeDoTitular = 3;
+      string cpfDoTitular  = 4;
+      string agencia       = 5;
+      string numeroDaConta = 6;
+    }
+
+    TipoDeChave tipo        = 1;
+    string chave            = 2;
+    ContaInfo conta         = 3;
+    google.protobuf.Timestamp criadaEm = 4;
+  }
+
+  string clienteId = 1;
+  string pixId     = 2;
+  ChavePix chave   = 3;
+}
+

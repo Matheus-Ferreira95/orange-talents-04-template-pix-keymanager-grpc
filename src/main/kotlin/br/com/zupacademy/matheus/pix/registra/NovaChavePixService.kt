@@ -29,7 +29,7 @@ class NovaChavePixService(@Inject val repository: ChavePixRepository, // 1
 
         // 1. verifica se chave já existe no sistema
         if (repository.existsByChave(novaChave.chave)) // 1
-            throw ChavePixExistenteException("Chave Pix '${novaChave.chave}' existente") // 1
+            throw ChavePixExistenteException("Chave Pix '${novaChave.chave}' existente") // 1 // por estarmos em um contexto transacional será feito um rollback dos dados
 
         // 2. busca dados da conta no ERP do ITAU
         val response = itauClient.buscaContaPorTipo(novaChave.clienteId!!, novaChave.tipoDeConta!!.name) // 1

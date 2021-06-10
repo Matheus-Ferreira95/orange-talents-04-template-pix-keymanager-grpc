@@ -52,14 +52,12 @@ dependencies {
     implementation("javax.validation:validation-api")
 
     // TESTES
-    testAnnotationProcessor("io.micronaut:micronaut-inject-java")
-    testImplementation("io.micronaut:micronaut-http-client")
-    testImplementation("org.junit.jupiter:junit-jupiter-api")
-    testImplementation("org.mockito:mockito-core:3.8.0")
-    testImplementation("io.micronaut.test:micronaut-test-junit5:2.3.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
-    testImplementation("com.h2database:h2")
+    kaptTest("io.micronaut:micronaut-inject-java")
+    testImplementation("org.mockito:mockito-core")
     testImplementation("org.mockito:mockito-junit-jupiter:3.8.0")
+    testImplementation("com.h2database:h2")
+    testImplementation("org.hamcrest:hamcrest-core:2.2")
+    testImplementation("org.testcontainers:junit-jupiter")
 }
 
 
