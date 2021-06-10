@@ -47,7 +47,7 @@ internal class RegistraChavePixEndpointTest(val repository: ChavePixRepository,
     }
 
     @Test
-    fun `consegue registrar uma nova chave pix`(){
+    fun `deve registrar uma nova chave pix`(){
         `when` (itauClient.buscaContaPorTipo(clienteId = CLIENTE_ID.toString(), tipo = "CONTA_CORRENTE"))
             .thenReturn(HttpResponse.ok(dadosDaContaResponse()))
 
