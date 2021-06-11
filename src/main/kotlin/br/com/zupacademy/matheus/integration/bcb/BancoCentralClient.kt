@@ -135,7 +135,7 @@ data class BankAccount(
     /**
      * https://open-banking.pass-consulting.com/json_ExternalCashAccountType1Code.html
      */
-    enum class AccountType() {
+    enum class AccountType {
 
         CACC, // Current: Account used to post debits and credits when no specific account has been nominated
         SVGS; // Savings: Savings
